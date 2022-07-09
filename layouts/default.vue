@@ -196,28 +196,31 @@ export default {
         </v-main>
 
 
-        <v-footer color="primary" dark app>
-            <h3>Footer</h3>
-            <!-- <Footer></Footer> -->
-            <v-divider></v-divider>
+        <v-footer color="primary" app align="center">
+          <v-row>
+            <v-col cols="12">
+              <!-- <v-card @click="shareTwitter"> -->
+                  <v-icon>mdi-twitter</v-icon>
+              <!-- </v-card> -->
+              <!-- <v-card @click="shareFacebook"> -->
+                  <v-icon>mdi-facebook</v-icon>
+              <!-- </v-card> -->
+              <!-- <v-card @click="shareInstagram"> -->
+                  <v-icon>mdi-linkedin</v-icon>
+              <!-- </v-card> -->
+            </v-col>
+  
+              <!-- <v-divider></v-divider> -->
+              
+              <v-col cols="12">
+                <!-- <v-card>
+                    <v-card-text> -->
+                      ©️ポモドーラー 2022. All Rights Reserved.
+                  <!-- </v-card-text>
+                </v-card> -->
+              </v-col>
+          </v-row>
 
-            <v-row>
-                <v-col cols="4" align="center"> 
-                    <v-card>
-                        <v-icon>mdi-twitter</v-icon>
-                    </v-card>
-                </v-col>
-                <v-col cols="4" align="center"> 
-                    <v-card>
-                        <v-icon>mdi-facebook</v-icon>
-                    </v-card>
-                </v-col>
-                <v-col cols="4" align="center"> 
-                    <v-card>
-                        <v-icon>mdi-linkedin</v-icon>
-                    </v-card>
-                </v-col>
-            </v-row>
         </v-footer>
     </v-app>
 </template>
@@ -238,8 +241,19 @@ export default {
                 {id:2, title:"ああああああああ3", items: [{id:0, title:"3a"}, {id:1, title: "3b"}, {id:2, title:"3c"}]},
                 {id:3, title:"ああああああああ4", items: [{id:0, title:"4a"}, {id:1, title: "4b"}, {id:2, title:"4c"}]},
             ]
+        }),
+        methods: {
+          shareTwitter: function() {
+
+          },
+          shareFacebook: function() {
+
+          },
+          shareInstagram: function() {
+
+          },
+          
         }
-        ),
     }
 </script>
 

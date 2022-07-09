@@ -6,6 +6,7 @@
         <p v-if="isWorking"> 作業中 </p>
         <p v-else> 休憩中 </p>
         <p> {{ formattedTime }} </p>
+
     </v-container>
 </template>
 
@@ -27,17 +28,21 @@
             isStarted: false,
             isWorking: false,
             timerId: -1,
-            leftMilliSeconds: 2400,
         }),
-        // props: [
-        //     "leftMilliSeconds",
-        // ],
+        props: [
+            "isWorkingMode",
+        ],
         methods: {
             startTimer: function(){
                 if (this.isWorking) return;
                 this.isWorking = true;
                 this.isStarted = true;
-                this.timerId = setInterval(this.decreaseTime, timerInterval);
+                this.timerId = setInterval(()=>{
+                    this.$store.commit("timer/decreaceTime", {
+                        isWorkingMode: this.isWorkingMode,
+                        interval: timerInterval,
+                    });
+                }, timerInterval);
                 
             },
             stopTimer: function(){
@@ -59,10 +64,17 @@
                 return this.isStarted? "Restart" : "Start";
             },
             formattedTime: function(){
-                const m = Math.floor(this.leftMilliSeconds /1000 / 60);
-                const s = Math.floor(this.leftMilliSeconds /1000 % 60);
+                let leftMilliSeconds;
+                if (this.isWorkingMode){
+                    leftMilliSeconds = this.$store.state.timer.workTime;
+                }else {
+                    leftMilliSeconds = this.$store.state.timer.restTime;
+                }
+
+                const m = Math.floor(leftMilliSeconds /1000 / 60);
+                const s = Math.floor(leftMilliSeconds /1000 % 60);
                 
-                return `${m}:${s}`
+                return `${m}:${s<10? "0": ""}${s}`
             }
         },
     }

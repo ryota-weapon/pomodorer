@@ -8,8 +8,8 @@
                 <v-container>
                     <v-form>
                         <v-text-field v-model="title" label="タイトル"></v-text-field>
-                        <v-text-field v-model="workTime" label="作業時間(分)"></v-text-field>
-                        <v-text-field v-model="restTime" label="休憩時間(分)"></v-text-field>
+                        <v-text-field v-model="workTime" label="作業時間(分)" type="number"></v-text-field>
+                        <v-text-field v-model="restTime" label="休憩時間(分)" type="number"></v-text-field>
                         <v-text-field v-model="rounds" label="ラウンド数"></v-text-field>
                         <v-btn @click="addPreset">登録</v-btn>
                     </v-form>
@@ -18,7 +18,7 @@
                     <v-list-item v-for="preset in presets" :key="preset.id">
                         <v-list-item-content>
                             <v-list-item-title>
-                                <v-btn text outlined>{{preset.title}}</v-btn>
+                                <v-btn text outlined @click="setPreset(preset.id)">{{preset.title}}</v-btn>
                             </v-list-item-title>
                             <p> {{preset.workTime}} - {{preset.restTime}} x {{preset.rounds}} </p>
                         </v-list-item-content>
@@ -49,15 +49,28 @@
 
                 //inMemory
                 this.presets.push({
-                    id: this.presets.length+1,
+                    id: this.presets.length,
                     title: this.title,
                     workTime: this.workTime,
                     restTime: this.restTime,
                     rounds: this.rounds,
                 })
-
                 //empty
             },
+
+            setPreset: function(id) {
+                let p;
+                for (let i=0; i < this.presets.length; i++) {
+                    if (this.presets[i].id == id) {
+                        p = this.presets[i];
+                        console.log(this.presets[i])
+                        break
+                    }
+                }
+                console.log(p);
+                this.$store.commit("timer/setWorkTime", p.workTime*60*1000);
+                this.$store.commit("timer/setRestTime", p.restTime*60*1000);
+            }
         },
     }
 </script>
