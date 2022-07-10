@@ -19,7 +19,7 @@
 
             <v-list color="#B1EAF6">
                 <v-list-item v-for="preset in presets" :key="preset.id">
-                    <v-card width="100%" @click="setPreset(preset.id)">
+                    <v-card width="100%" @click="setPreset(preset.id)" class="pl-4">
                         <v-list-item-content>
                             <v-list-item-title>{{preset.title}}</v-list-item-title>
                             <v-list-item-subtitle> {{preset.workTime}} - {{preset.restTime}} x {{preset.rounds}} </v-list-item-subtitle>
@@ -41,7 +41,7 @@
             restTime: 5,
             rounds: 4,
             presets: [
-                {id:0, title: "defaulta", workTime: 25, restTime: 5, rounds: 4},
+                {id:0, title: "デフォルト", workTime: 25, restTime: 5, rounds: 4},
             ]
         }),
         methods: {

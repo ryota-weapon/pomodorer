@@ -1,11 +1,14 @@
 <template>
     <v-container>
         <v-row>
-            <v-col cols="6" align="center">
+            <v-col cols="6" class="py-6" align="center">
+                <p style="font-weight: bold;" align="left">タスク追加</p>
                 <v-form>
-                    <v-text-field label="タイトル" v-model="title"></v-text-field>
-                    <v-text-field label="要する時間(分)" v-model="time" type="number"></v-text-field>
+                    <v-text-field class="py-4" label="タイトル" v-model="title"></v-text-field>
+                    <v-text-field class="py-4" label="要する時間(分)" v-model="time" type="number"></v-text-field>
+                    <v-text-field class="py-4" label="期日" v-model="time" type="date"></v-text-field>
                 </v-form>
+
                 <v-btn width="90%" @click="addTask"><v-icon> mdi-plus </v-icon></v-btn>        
             </v-col>
     

@@ -67,6 +67,14 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extend: (config, ctx) => {
+      if (ctx.isClient) {
+        config.module.rules.push({
+          test: /\.worker\.js$/,
+          loader: 'worker-loader',
+        })
+      }
+    }
   },
 
   router: {

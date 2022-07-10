@@ -7,18 +7,21 @@
             </v-col>
             <v-col cols="12" align="center">
                 <p v-if="isWorking"> 作業中 </p>
-                <p v-else> 休憩中 </p>
+                <p v-else> 停止中 </p>
             </v-col>
             <v-col cols="12" align="center">
                 <p id="time"> {{ formattedTime }} </p>
             </v-col>
         </v-row>
     </v-card>
-
-    <!-- </v-container> -->
 </template>
 
 <script>
+    import Vue from 'vue';
+    import Worker from 'worker-loader!~/assets/timer.worker';
+
+
+
     function soundBeep() {
         var ctx = new AudioContext();
         var oscillator = ctx.createOscillator();
@@ -30,6 +33,7 @@
             oscillator.stop();
         }, 2000);
     }
+
     const timerInterval = 100;
     export default {
         data: () => ({
@@ -60,7 +64,10 @@
 
             decreaseTime: function() {
                 if (this.leftMilliSeconds > 0){
-                    this.leftMilliSeconds -= timerInterval
+                    this.leftMilliSeconds -= timerInterval;
+                    document.title = this.leftMilliSeconds;
+                    document.title = "aaa";
+                    
                 }else{
                     this.stopTimer();
                     soundBeep();

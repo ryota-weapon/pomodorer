@@ -3,24 +3,20 @@
         <!-- <v-container align="center">
             <v-btn @click="workingMode=!workingMode">toggle</v-btn>
         </v-container> -->
-        <v-row justify="center">
-            <v-col cols="2">
-                <v-btn>
-                    作業モード
-                </v-btn>
-            </v-col>
-            <v-col cols="2">
-                <v-btn>
-                    休憩モード
-                </v-btn>
+        <v-row>
+            <v-col align="center">
+                <v-btn-toggle v-model="workingMode">
+                    <v-btn :disabled="workingMode==0" >作業モード</v-btn>
+                    <v-btn :disabled="workingMode==1" >休憩モード</v-btn>
+                </v-btn-toggle>
             </v-col>
         </v-row>
 
         <!-- <p v-if="workingMode">作業モード</p>
         <p v-else>休憩モード</p> -->
 
-        <Timer_ v-if="workingMode" :isWorkingMode="workingMode"></Timer_>
-        <Timer_ v-else :isWorkingMode="workingMode"></Timer_>
+        <Timer_ v-if="workingMode" :isWorkingMode="workingMode==0"></Timer_>
+        <Timer_ v-else :isWorkingMode="workingMode==0"></Timer_>
 
         <Preset></Preset>
     </v-container>
@@ -37,7 +33,13 @@
             Preset,
         },
         data: () => ({
-            workingMode: true,
+            workingMode: 0,
         }),
+
+        computed: {
+            shouldDisableWork: function(){
+                return !this.workingMode;
+            }
+        }
     }
 </script>
