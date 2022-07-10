@@ -1,11 +1,23 @@
 <template>
-    <v-container>
-        <v-container align="center">
+    <v-container class="py-6">
+        <!-- <v-container align="center">
             <v-btn @click="workingMode=!workingMode">toggle</v-btn>
-        </v-container>
+        </v-container> -->
+        <v-row justify="center">
+            <v-col cols="2">
+                <v-btn>
+                    作業モード
+                </v-btn>
+            </v-col>
+            <v-col cols="2">
+                <v-btn>
+                    休憩モード
+                </v-btn>
+            </v-col>
+        </v-row>
 
-        <p v-if="workingMode">作業モード</p>
-        <p v-else>休憩モード</p>
+        <!-- <p v-if="workingMode">作業モード</p>
+        <p v-else>休憩モード</p> -->
 
         <Timer_ v-if="workingMode" :isWorkingMode="workingMode"></Timer_>
         <Timer_ v-else :isWorkingMode="workingMode"></Timer_>

@@ -154,12 +154,12 @@ export default {
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items>
+              <v-btn text outlined to="/about">ポモドーラーとは</v-btn>
                 <v-btn text outlined to="/login">ログイン</v-btn>
-                <v-btn text outlined to="/about">about</v-btn>
-                <v-btn text outlined to="/help">help</v-btn>
+                <v-btn text outlined to="/help">ヘルプ</v-btn>
                 <v-btn text outlined to="/setting"><v-icon> mdi-cog </v-icon></v-btn>
 
-                <v-menu offset-y>
+                <!-- <v-menu offset-y>
                 <template v-slot:activator="{on}">
                     <v-btn text outlined v-on="on">aaa <v-icon>mdi-menu-down</v-icon></v-btn>
                 </template>
@@ -174,9 +174,9 @@ export default {
                             <v-list-item-title>a3</v-list-item-title>
                         </v-list-item-content>
                     </v-list>
-                </v-menu>
+                </v-menu> -->
                 
-                <v-menu offset-y>
+                <!-- <v-menu offset-y>
                     <template v-slot:activator="{on}">
                         <v-btn text large outlined v-on="on">bbb <v-icon>mdi-menu-down</v-icon> </v-btn>
                     </template>
@@ -185,20 +185,31 @@ export default {
                             <v-list-item-title>{{bm.title}}</v-list-item-title>
                         </v-list-item-content>
                     </v-list>
-                </v-menu>
+                </v-menu> -->
             </v-toolbar-items>
         </v-app-bar>
 
-        <v-main>
-          <v-container>
-            <Nuxt />
-          </v-container>
-        </v-main>
+        <v-main id="main">
+          <v-row fill-height>
+            <v-col cols="2" id="side">
+            </v-col>
+  
+            <v-col cols="8" id="main-contents">
+              <v-container fill-height>
+                <Nuxt />
+              </v-container>
+            </v-col>
+
+          <v-col cols="2" id="side" class="pl-0">
+            <Log></Log>
+          </v-col>
+        </v-row>
+      </v-main>
 
 
-        <v-footer color="primary" app align="center">
+        <v-footer color="#47B5FF" align="center" class="py-3">
           <v-row>
-            <v-col cols="12">
+            <v-col cols="12" class="pt-6">
               <!-- <v-card @click="shareTwitter"> -->
                   <v-icon>mdi-twitter</v-icon>
               <!-- </v-card> -->
@@ -213,11 +224,7 @@ export default {
               <!-- <v-divider></v-divider> -->
               
               <v-col cols="12">
-                <!-- <v-card>
-                    <v-card-text> -->
                       ©️ポモドーラー 2022. All Rights Reserved.
-                  <!-- </v-card-text>
-                </v-card> -->
               </v-col>
           </v-row>
 
@@ -226,21 +233,14 @@ export default {
 </template>
 
 <script>
-    // import Footer from "./components/Parts/FooterPart.vue"
+    import Log from "../components/Log.vue";
 
     export default {
         name: "DefualtLayout",
         components: {
-            
+          Log,        
         },
         data: ()=>({
-            drawer: null,
-            bMenus: [
-                {id:0, title:"ああああああああ1", items: [{id:0, title:"1a"}, {id:1, title: "1b"}, {id:2, title:"1c"}]},
-                {id:1, title:"ああああああああ2", items: [{id:0, title:"2a"}, {id:1, title: "2b"}, {id:2, title:"2c"}]},
-                {id:2, title:"ああああああああ3", items: [{id:0, title:"3a"}, {id:1, title: "3b"}, {id:2, title:"3c"}]},
-                {id:3, title:"ああああああああ4", items: [{id:0, title:"4a"}, {id:1, title: "4b"}, {id:2, title:"4c"}]},
-            ]
         }),
         methods: {
           shareTwitter: function() {
@@ -256,4 +256,18 @@ export default {
         }
     }
 </script>
+
+<style>
+  #main-contents{
+    background-color: #B1EAF6;
+  }
+
+  #side{
+    background-color: #DFF6FF;
+  }
+
+  #main{
+    min-height: 800px;
+  }
+</style>
 

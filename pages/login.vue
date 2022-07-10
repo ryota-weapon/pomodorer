@@ -1,5 +1,5 @@
 <template>
-    <v-container align="center">
+    <v-container align="center" style="min-height: 800px">
         <h2>Login</h2>
         <p>This app only supports for sign-in with google</p>
         <p>You can use most functions without signing in</p>

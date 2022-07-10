@@ -1,32 +1,34 @@
 <template>
-    <div id="preset">
-        <v-expansion-panels><v-expansion-panel>
+    <v-expansion-panels><v-expansion-panel>
 
-            <v-expansion-panel-header>Preset</v-expansion-panel-header>
-            <v-expansion-panel-content>
-                
-                <v-container>
-                    <v-form>
+        <v-expansion-panel-header color="#B1EAF6">プリセット</v-expansion-panel-header>
+        <v-expansion-panel-content color="#B1EAF6">
+            <v-form>
+                <v-row>
+                    <v-col>
                         <v-text-field v-model="title" label="タイトル"></v-text-field>
+                        <v-text-field v-model="rounds" label="ラウンド数"></v-text-field>
+                    </v-col>
+                    <v-col>
                         <v-text-field v-model="workTime" label="作業時間(分)" type="number"></v-text-field>
                         <v-text-field v-model="restTime" label="休憩時間(分)" type="number"></v-text-field>
-                        <v-text-field v-model="rounds" label="ラウンド数"></v-text-field>
-                        <v-btn @click="addPreset">登録</v-btn>
-                    </v-form>
-                </v-container>
-                <v-list>
-                    <v-list-item v-for="preset in presets" :key="preset.id">
+                    </v-col>
+                </v-row>
+                <v-btn @click="addPreset">登録</v-btn>
+            </v-form>
+
+            <v-list color="#B1EAF6">
+                <v-list-item v-for="preset in presets" :key="preset.id">
+                    <v-card width="100%" @click="setPreset(preset.id)">
                         <v-list-item-content>
-                            <v-list-item-title>
-                                <v-btn text outlined @click="setPreset(preset.id)">{{preset.title}}</v-btn>
-                            </v-list-item-title>
-                            <p> {{preset.workTime}} - {{preset.restTime}} x {{preset.rounds}} </p>
+                            <v-list-item-title>{{preset.title}}</v-list-item-title>
+                            <v-list-item-subtitle> {{preset.workTime}} - {{preset.restTime}} x {{preset.rounds}} </v-list-item-subtitle>
                         </v-list-item-content>
-                    </v-list-item>
-                </v-list>
-            </v-expansion-panel-content>
-        </v-expansion-panel></v-expansion-panels>
-    </div>
+                    </v-card>
+                </v-list-item>
+            </v-list>
+        </v-expansion-panel-content>
+    </v-expansion-panel></v-expansion-panels>
 </template>
 
 <script>
@@ -63,11 +65,9 @@
                 for (let i=0; i < this.presets.length; i++) {
                     if (this.presets[i].id == id) {
                         p = this.presets[i];
-                        console.log(this.presets[i])
                         break
                     }
                 }
-                console.log(p);
                 this.$store.commit("timer/setWorkTime", p.workTime*60*1000);
                 this.$store.commit("timer/setRestTime", p.restTime*60*1000);
             }
@@ -77,6 +77,7 @@
 
 <style>
     #preset{
-        border: solid 3px black;
+        /* border: solid 3px black; */
+        background: #B1EAF6;
     }
 </style>

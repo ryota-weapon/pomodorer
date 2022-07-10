@@ -1,13 +1,21 @@
 <template>
-    <v-container id="timer">
-        <h2>Timer</h2>
-        <v-btn @click="startTimer"> {{ startText }} </v-btn>
-        <v-btn @click="stopTimer">Stop</v-btn>
-        <p v-if="isWorking"> 作業中 </p>
-        <p v-else> 休憩中 </p>
-        <p> {{ formattedTime }} </p>
+    <v-card color="#B1EAF6" elevation="6" class="pb-8">
+        <v-row id="timer" justify="center" >
+            <v-col cols="12" align="center">
+                <v-btn @click="startTimer"> {{ startText }} </v-btn>
+                <v-btn @click="stopTimer">Stop</v-btn>
+            </v-col>
+            <v-col cols="12" align="center">
+                <p v-if="isWorking"> 作業中 </p>
+                <p v-else> 休憩中 </p>
+            </v-col>
+            <v-col cols="12" align="center">
+                <p id="time"> {{ formattedTime }} </p>
+            </v-col>
+        </v-row>
+    </v-card>
 
-    </v-container>
+    <!-- </v-container> -->
 </template>
 
 <script>
@@ -82,7 +90,11 @@
 </script>
 
 <style>
-    #timer{
+    /* #timer{
         border: solid 5px black;
+    } */
+
+    #time{
+        font-size: 5rem;
     }
 </style>

@@ -23,7 +23,7 @@
 </script>
 
 <style>
-    #calendar{
+    /* #calendar{
         border: solid 3px black;
-    }
+    } */
 </style>

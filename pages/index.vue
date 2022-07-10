@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <google-calendar></google-calendar>
+        <!-- <google-calendar></google-calendar> -->
         <Timer></Timer>
         <Task></Task>
     </v-container>
